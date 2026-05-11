@@ -1,11 +1,23 @@
 import { useState } from "react";
+
 import Opening from "./components/opening/Opening";
 import Home from "./pages/Home";
 
-function App() {
-  const [done, setDone] = useState(false);
+export default function App() {
+  const [loadingComplete, setLoadingComplete] =
+    useState(false);
 
-  return done ? <Home /> : <Opening onFinish={() => setDone(true)} />;
+  return (
+    <>
+      {!loadingComplete ? (
+        <Opening
+          onFinish={() =>
+            setLoadingComplete(true)
+          }
+        />
+      ) : (
+        <Home />
+      )}
+    </>
+  );
 }
-
-export default App;
